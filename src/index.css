@@ -1,0 +1,413 @@
+@import "tailwindcss";
+
+/* ===== NEUMORPHISM DESIGN SYSTEM ===== */
+
+:root {
+  /* Base Colors */
+  --neu-bg: #E0E5EC;
+  --neu-fg: #3D4852;
+  --neu-muted: #6B7280;
+  --neu-accent: #6C63FF;
+  --neu-accent-light: #8B84FF;
+  --neu-accent-secondary: #38B2AC;
+  
+  /* Shadow Colors */
+  --neu-shadow-dark: rgb(163, 177, 198, 0.6);
+  --neu-shadow-light: rgba(255, 255, 255, 0.5);
+  --neu-shadow-dark-strong: rgb(163, 177, 198, 0.7);
+  --neu-shadow-light-strong: rgba(255, 255, 255, 0.6);
+}
+
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--neu-bg);
+  color: var(--neu-fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ===== NEUMORPHIC SHADOWS ===== */
+
+/* Extruded (Standard) - Default resting state */
+.neu-extruded {
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5);
+}
+
+/* Extruded Hover (Lifted) */
+.neu-extruded-hover {
+  box-shadow: 12px 12px 20px rgb(163,177,198,0.7), -12px -12px 20px rgba(255,255,255,0.6);
+}
+
+/* Extruded Small */
+.neu-extruded-sm {
+  box-shadow: 5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5);
+}
+
+/* Inset (Pressed) - Standard pressed states */
+.neu-inset {
+  box-shadow: inset 6px 6px 10px rgb(163,177,198,0.6), inset -6px -6px 10px rgba(255,255,255,0.5);
+}
+
+/* Inset Deep - For inputs, active wells */
+.neu-inset-deep {
+  box-shadow: inset 10px 10px 20px rgb(163,177,198,0.7), inset -10px -10px 20px rgba(255,255,255,0.6);
+}
+
+/* Inset Small - For subtle tracks or pills */
+.neu-inset-sm {
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 40px rgba(108, 99, 255, 0.5);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* ===== TRANSITIONS ===== */
+
+.neu-transition {
+  transition: all 300ms ease-out;
+}
+
+.neu-transition-fast {
+  transition: all 150ms ease-out;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--neu-bg);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(163, 177, 198, 0.6);
+  border-radius: 8px;
+  border: 2px solid var(--neu-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(163, 177, 198, 0.8);
+}
+
+/* ===== RANGE INPUT STYLING ===== */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--neu-bg);
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--neu-bg);
+  margin-top: -8px;
+  box-shadow: 5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5);
+  transition: transform 300ms ease-out, box-shadow 300ms ease-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 7px 7px 14px rgb(163,177,198,0.7), -7px -7px 14px rgba(255,255,255,0.6);
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5), 0 0 0 3px var(--neu-accent);
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--neu-bg);
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: var(--neu-bg);
+  box-shadow: 5px 5px 10px rgb(163,177,198,0.6), -5px -5px 10px rgba(255,255,255,0.5);
+}
+
+/* ===== SELECT STYLING ===== */
+
+select {
+  background-image: none;
+}
+
+/* ===== CHECKBOX STYLING ===== */
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--neu-bg);
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 300ms ease-out;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--neu-accent);
+  box-shadow: 3px 3px 6px rgb(163,177,198,0.6), -3px -3px 6px rgba(255,255,255,0.5);
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+input[type="checkbox"]:focus {
+  outline: none;
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5), 0 0 0 2px var(--neu-accent);
+}
+
+/* ===== BUTTON STATES ===== */
+
+.neu-btn {
+  background: var(--neu-bg);
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5);
+  transition: all 300ms ease-out;
+}
+
+.neu-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 12px 12px 20px rgb(163,177,198,0.7), -12px -12px 20px rgba(255,255,255,0.6);
+}
+
+.neu-btn:active {
+  transform: translateY(0.5px);
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5);
+}
+
+.neu-btn-primary {
+  background: var(--neu-accent);
+  color: white;
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5);
+}
+
+.neu-btn-primary:hover {
+  background: var(--neu-accent-light);
+}
+
+.neu-btn-primary:active {
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,0.2), inset -3px -3px 6px rgba(255,255,255,0.1);
+}
+
+/* ===== CARD HOVER EFFECTS ===== */
+
+.neu-card {
+  background: var(--neu-bg);
+  border-radius: 32px;
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5);
+  transition: all 300ms ease-out;
+}
+
+.neu-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 12px 12px 20px rgb(163,177,198,0.7), -12px -12px 20px rgba(255,255,255,0.6);
+}
+
+/* ===== ICON WELLS ===== */
+
+.neu-icon-well {
+  background: var(--neu-bg);
+  border-radius: 16px;
+  box-shadow: inset 6px 6px 10px rgb(163,177,198,0.6), inset -6px -6px 10px rgba(255,255,255,0.5);
+}
+
+.neu-icon-well-deep {
+  background: var(--neu-bg);
+  border-radius: 16px;
+  box-shadow: inset 10px 10px 20px rgb(163,177,198,0.7), inset -10px -10px 20px rgba(255,255,255,0.6);
+}
+
+/* ===== INPUTS ===== */
+
+.neu-input {
+  background: var(--neu-bg);
+  border-radius: 16px;
+  box-shadow: inset 6px 6px 10px rgb(163,177,198,0.6), inset -6px -6px 10px rgba(255,255,255,0.5);
+  border: none;
+  transition: all 300ms ease-out;
+}
+
+.neu-input:focus {
+  outline: none;
+  box-shadow: inset 10px 10px 20px rgb(163,177,198,0.7), inset -10px -10px 20px rgba(255,255,255,0.6);
+  ring: 2px;
+  ring-color: var(--neu-accent);
+  ring-offset: 2px;
+}
+
+.neu-input::placeholder {
+  color: #A0AEC0;
+}
+
+/* ===== PROGRESS BARS ===== */
+
+.neu-progress-track {
+  background: var(--neu-bg);
+  border-radius: 9999px;
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5);
+}
+
+.neu-progress-fill {
+  border-radius: 9999px;
+  transition: width 500ms ease-out;
+}
+
+/* ===== DECORATIVE CIRCLES ===== */
+
+.neu-circle-outer {
+  background: var(--neu-bg);
+  border-radius: 9999px;
+  box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255,0.5);
+}
+
+.neu-circle-inner {
+  background: var(--neu-bg);
+  border-radius: 9999px;
+  box-shadow: inset 6px 6px 10px rgb(163,177,198,0.6), inset -6px -6px 10px rgba(255,255,255,0.5);
+}
+
+/* ===== TOGGLE SWITCH ===== */
+
+.neu-toggle {
+  background: var(--neu-bg);
+  border-radius: 9999px;
+  box-shadow: inset 3px 3px 6px rgb(163,177,198,0.6), inset -3px -3px 6px rgba(255,255,255,0.5);
+  transition: all 300ms ease-out;
+}
+
+.neu-toggle.active {
+  background: var(--neu-accent);
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,0.15), inset -3px -3px 6px rgba(255,255,255,0.1);
+}
+
+.neu-toggle-knob {
+  background: var(--neu-bg);
+  border-radius: 9999px;
+  box-shadow: 3px 3px 6px rgb(163,177,198,0.6), -3px -3px 6px rgba(255,255,255,0.5);
+  transition: all 300ms ease-out;
+}
+
+/* ===== STATUS BADGES ===== */
+
+.neu-badge {
+  background: var(--neu-bg);
+  border-radius: 9999px;
+  box-shadow: 3px 3px 6px rgb(163,177,198,0.6), -3px -3px 6px rgba(255,255,255,0.5);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.neu-badge-success {
+  color: #059669;
+}
+
+.neu-badge-warning {
+  color: #D97706;
+}
+
+.neu-badge-danger {
+  color: #DC2626;
+}
+
+.neu-badge-info {
+  color: var(--neu-accent);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  .neu-extruded {
+    box-shadow: 6px 6px 12px rgb(163,177,198,0.6), -6px -6px 12px rgba(255,255,255,0.5);
+  }
+  
+  .neu-card {
+    border-radius: 24px;
+  }
+}
