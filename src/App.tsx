@@ -4,28 +4,26 @@ const API =
 "https://script.google.com/macros/s/AKfycbzFCJGZtLgziL_4OyyI6kCXYmaXwBELf72E0W1_QSCBlAmwo05jG7U1MutdN1OKIVBlwg/exec";
 
 export default function App() {
+  const [rows, setRows] = useState([]);
 
-  const [rows,setRows] = useState([]);
-
-  useEffect(()=>{
+  useEffect(() => {
     load();
-    const t = setInterval(load,5000);
-    return ()=>clearInterval(t);
-  },[]);
+    const t = setInterval(load, 5000);
+    return () => clearInterval(t);
+  }, []);
 
-  async function load(){
+  async function load() {
     const r = await fetch(API);
     const j = await r.json();
     setRows(j);
   }
 
-  if(!rows.length) return <h2>Loading...</h2>;
+  if (!rows.length) return <h2>Loading...</h2>;
 
-  const last = rows[rows.length-1];
+  const last = rows[rows.length - 1];
 
   return (
-    <div style={{padding:20,fontFamily:"Arial"}}>
-
+    <div style={{ padding: 20, fontFamily: "Arial" }}>
       <h1>ASTRA LIVE DASHBOARD</h1>
 
       <h2>Robot Status</h2>
@@ -37,7 +35,7 @@ export default function App() {
       <p>Battery % : {last["Battery %"]}</p>
       <p>Alert : {last["Alert T"]}</p>
 
-      <hr/>
+      <hr />
 
       <h2>History</h2>
 
@@ -54,7 +52,7 @@ export default function App() {
         </thead>
 
         <tbody>
-          {rows.map((r,i)=>(
+          {rows.map((r, i) => (
             <tr key={i}>
               <td>{r.Timestamp}</td>
               <td>{r["Robot ID"]}</td>
@@ -67,12 +65,11 @@ export default function App() {
         </tbody>
       </table>
 
-      <hr/>
+      <hr />
 
       <h2>Live Camera</h2>
 
-      <img src="http://192.168.4.1/stream" width="480"/>
-
+      <img src="http://192.168.4.1/stream" width="480" />
     </div>
   );
 }
