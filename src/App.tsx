@@ -28,16 +28,14 @@ export default function App() {
 
       <h1>ASTRA LIVE DASHBOARD</h1>
 
-      <hr/>
-
       <h2>Robot Status</h2>
 
-      <p><b>Robot ID:</b> {last["Robot ID"]}</p>
-      <p><b>Shelf:</b> {last["Shelf ID"]}</p>
-      <p><b>Status:</b> {last["Shelf Status"]}</p>
-      <p><b>Stock:</b> {last["Stock %"]}%</p>
-      <p><b>Battery:</b> {last["Battery %"]}%</p>
-      <p><b>Alert:</b> {last["Alert T"]}</p>
+      <p>Robot ID : {last["Robot ID"]}</p>
+      <p>Shelf ID : {last["Shelf ID"]}</p>
+      <p>Status : {last["Shelf Status"]}</p>
+      <p>Stock % : {last["Stock %"]}</p>
+      <p>Battery % : {last["Battery %"]}</p>
+      <p>Alert : {last["Alert T"]}</p>
 
       <hr/>
 
@@ -73,10 +71,7 @@ export default function App() {
 
       <h2>Live Camera</h2>
 
-      <img
-        src="http://192.168.4.1/stream"
-        width="480"
-      />
+      <img src="http://192.168.4.1/stream" width="480"/>
 
     </div>
   );
